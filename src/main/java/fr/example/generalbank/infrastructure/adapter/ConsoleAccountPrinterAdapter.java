@@ -1,9 +1,10 @@
 package fr.example.generalbank.infrastructure.adapter;
 
-import fr.example.generalbank.domain.model.Account;
+import fr.example.generalbank.domain.model.OperationHistory;
 import fr.example.generalbank.domain.port.AccountPrinterPort;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class ConsoleAccountPrinterAdapter implements AccountPrinterPort {
 
@@ -11,10 +12,10 @@ public class ConsoleAccountPrinterAdapter implements AccountPrinterPort {
     private static final String PATTERN = "yyyy-MM-dd HH:mm";
 
     @Override
-    public String print(final Account account) {
+    public String print(final List<OperationHistory> operationHistoryList) {
         SimpleDateFormat formatter = new SimpleDateFormat(PATTERN);
         String line = "| %s | %s | %s | %s |\n";
-        String history = account.getOperationHistoryAccount().getOperationHistoryList()
+        String history = operationHistoryList
                 .stream()
                 .map(opHistory -> String.format(line,
                         opHistory.operation().toString(),

@@ -1,4 +1,4 @@
-package fr.example.generalbank.model;
+package fr.example.generalbank.domain.model;
 
 import fr.example.generalbank.domain.exception.BusinessException;
 import fr.example.generalbank.domain.model.Account;

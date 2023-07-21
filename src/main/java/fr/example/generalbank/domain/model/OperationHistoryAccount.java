@@ -1,5 +1,7 @@
 package fr.example.generalbank.domain.model;
 
+import fr.example.generalbank.domain.port.AccountPrinterPort;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,4 +26,9 @@ public class OperationHistoryAccount {
     public List<OperationHistory> getOperationHistoryList() {
         return operationHistoryList;
     }
+
+    public void print(AccountPrinterPort printer){
+        printer.print(operationHistoryList);
+    }
+
 }

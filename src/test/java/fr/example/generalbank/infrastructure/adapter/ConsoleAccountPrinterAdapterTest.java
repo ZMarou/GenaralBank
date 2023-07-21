@@ -1,10 +1,9 @@
-package fr.example.generalbank.usecase;
+package fr.example.generalbank.infrastructure.adapter;
 
 import fr.example.generalbank.domain.exception.BusinessException;
 import fr.example.generalbank.domain.model.Account;
 import fr.example.generalbank.domain.model.Amount;
 import fr.example.generalbank.domain.port.AccountPrinterPort;
-import fr.example.generalbank.infrastructure.adapter.ConsoleAccountPrinterAdapter;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -13,7 +12,7 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
-public class AccountHistoryUsercaseTest {
+public class ConsoleAccountPrinterAdapterTest {
 
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final Date now = new Date();
@@ -26,7 +25,7 @@ public class AccountHistoryUsercaseTest {
         Account account = new Account(null, now);
 
         String expectedHistory = "| OPERATION | DATE | AMOUNT | BALANCE |\n";
-        assertEquals(expectedHistory, accountPrinterAdapter.print(account));
+        assertEquals(expectedHistory, accountPrinterAdapter.print(account.getOperationHistoryAccount().getOperationHistoryList()));
     }
 
     @Test
@@ -40,7 +39,7 @@ public class AccountHistoryUsercaseTest {
         String expectedHistory = "| OPERATION | DATE | AMOUNT | BALANCE |\n" +
                 "| DEPOSIT | " + FORMATTER.format(now) + " | 50.7 | 50.7 |\n" +
                 "| WITHDRAWAL | " + FORMATTER.format(now) + " | 10 | 40.7 |\n";
-        assertEquals(expectedHistory, accountPrinterAdapter.print(account));
+        assertEquals(expectedHistory, accountPrinterAdapter.print(account.getOperationHistoryAccount().getOperationHistoryList()));
     }
 
 }
