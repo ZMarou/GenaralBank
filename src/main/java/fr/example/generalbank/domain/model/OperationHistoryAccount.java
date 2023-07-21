@@ -14,21 +14,15 @@ public class OperationHistoryAccount {
         operationHistoryList = new ArrayList<>();
     }
 
-    public void add(OperationEnum operationEnum, Date date, Amount amount, Balance balance) {
+    void add(OperationEnum operationEnum, Date date, Amount amount, Balance balance) {
         OperationHistory operationHistory = new OperationHistory(operationEnum, date, amount, balance);
         operationHistoryList.add(operationHistory);
     }
 
-    public boolean isEmpty() {
-        return operationHistoryList.isEmpty();
+    String print(AccountPrinterPort printer){
+        return printer.print(operationHistoryList);
     }
 
-    public List<OperationHistory> getOperationHistoryList() {
-        return operationHistoryList;
-    }
 
-    public void print(AccountPrinterPort printer){
-        printer.print(operationHistoryList);
-    }
 
 }
